@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Enable file security by default -->
+        <record id="file_security_enabled" model="ir.config_parameter">
+            <field name="key">file_security.enabled</field>
+            <field name="value">True</field>
+        </record>
+
+        <!-- Comprehensive blocklist of dangerous file extensions -->
+        <record id="file_security_blocked_extensions" model="ir.config_parameter">
+            <field name="key">file_security.blocked_extensions</field>
+            <field name="value">exe,bat,cmd,com,vbs,vbe,js,jse,wsf,wsh,ps1,ps2,psc1,psc2,msh,msh1,msh2,inf,reg,scr,hta,cpl,msi,msp,mst,pif,application,gadget,lnk,scf,sh,bash,csh,ksh,py,pyw,php,php3,php4,php5,phtml,pl,rb,jsp,asp,aspx,cer,sys,dll,drv,jar,war,class</field>
+        </record>
+
+        <!-- Blocked MIME types for executable / script content -->
+        <record id="file_security_blocked_mimetypes" model="ir.config_parameter">
+            <field name="key">file_security.blocked_mimetypes</field>
+            <field name="value">application/x-executable,application/x-msdos-program,application/x-msdownload,application/x-dosexec,application/x-sh,application/x-shellscript,application/x-python,application/x-httpd-php,application/x-perl,application/java-archive,application/x-msi,text/x-python,text/x-sh,text/x-perl,text/x-php,application/x-bat,application/x-msbatch</field>
+        </record>
+
+        <!-- Maximum file size in MB (0 = unlimited) -->
+        <record id="file_security_max_file_size_mb" model="ir.config_parameter">
+            <field name="key">file_security.max_file_size_mb</field>
+            <field name="value">25</field>
+        </record>
+
+        <!-- Strict mode: verify magic bytes match expectations -->
+        <record id="file_security_strict_mode" model="ir.config_parameter">
+            <field name="key">file_security.strict_mode</field>
+            <field name="value">True</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_file_security" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.file.security</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//widget[@name='res_config_dev_tool']" position="before">
+                <block title="File Upload Security" name="file_security_setting_block">
+                    <setting id="file_security_enabled_setting"
+                             string="File Upload Security"
+                             help="When enabled, uploads are validated against extension and MIME type blocklists.">
+                        <field name="file_security_enabled"/>
+                    </setting>
+                    <setting id="file_security_strict_mode_setting"
+                             string="Strict Mode (Magic-Bytes Verification)"
+                             help="Inspect actual binary content to detect disguised executables, even with safe-looking extensions."
+                             invisible="not file_security_enabled">
+                        <field name="file_security_strict_mode"/>
+                    </setting>
+                    <setting id="file_security_max_file_size_setting"
+                             string="Maximum File Size"
+                             help="Maximum upload size in megabytes. Set to 0 for no limit."
+                             invisible="not file_security_enabled">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="file_security_max_file_size_mb" string="Limit (MB)" class="col-lg-3 o_light_label"/>
+                                <field name="file_security_max_file_size_mb" class="col-lg-2"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting id="file_security_blocked_extensions_setting"
+                             string="Blocked Extensions"
+                             help="Comma-separated list of blocked file extensions (without dots)."
+                             invisible="not file_security_enabled">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <field name="file_security_blocked_extensions"
+                                       widget="text"
+                                       placeholder="exe,bat,cmd,sh,php,py,js,dll,msi,jar"
+                                       class="col-lg-8"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting id="file_security_blocked_mimetypes_setting"
+                             string="Blocked MIME Types"
+                             help="Comma-separated list of blocked MIME types."
+                             invisible="not file_security_enabled">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <field name="file_security_blocked_mimetypes"
+                                       widget="text"
+                                       placeholder="application/x-executable,application/x-msdownload"
+                                       class="col-lg-8"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
