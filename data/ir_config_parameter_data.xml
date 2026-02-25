@@ -32,5 +32,23 @@
             <field name="value">True</field>
         </record>
 
+        <!-- ClamAV antivirus scanning (disabled by default) -->
+        <record id="file_security_antivirus_enabled" model="ir.config_parameter">
+            <field name="key">file_security.antivirus_enabled</field>
+            <field name="value">False</field>
+        </record>
+
+        <!-- ClamAV daemon Unix socket path -->
+        <record id="file_security_antivirus_socket" model="ir.config_parameter">
+            <field name="key">file_security.antivirus_socket</field>
+            <field name="value">/var/run/clamav/clamd.ctl</field>
+        </record>
+
+        <!-- Block uploads when antivirus scan fails (fail-open by default) -->
+        <record id="file_security_antivirus_block_on_failure" model="ir.config_parameter">
+            <field name="key">file_security.antivirus_block_on_failure</field>
+            <field name="value">False</field>
+        </record>
+
     </data>
 </odoo>

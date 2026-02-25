@@ -37,3 +37,26 @@ class ResConfigSettings(models.TransientModel):
              "(magic bytes) of uploaded files to detect disguised executables, "
              "even if the file extension appears safe.",
     )
+    file_security_antivirus_enabled = fields.Boolean(
+        string="Antivirus Scanning (ClamAV)",
+        config_parameter='file_security.antivirus_enabled',
+        default=False,
+        help="When enabled, uploaded files are scanned for viruses using "
+             "the ClamAV daemon. Requires clamav-daemon to be installed "
+             "and running on the server.",
+    )
+    file_security_antivirus_socket = fields.Char(
+        string="ClamAV Socket Path",
+        config_parameter='file_security.antivirus_socket',
+        default='/var/run/clamav/clamd.ctl',
+        help="Path to the ClamAV daemon Unix socket. "
+             "Default: /var/run/clamav/clamd.ctl",
+    )
+    file_security_antivirus_block_on_failure = fields.Boolean(
+        string="Block Uploads on Scan Failure",
+        config_parameter='file_security.antivirus_block_on_failure',
+        default=False,
+        help="When enabled, file uploads are blocked if the antivirus "
+             "scanner is unreachable or fails. When disabled, uploads are "
+             "allowed with a warning in the log.",
+    )

@@ -1,9 +1,9 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     'name': 'File Upload Security',
-    'version': '18.0.1.0.0',
+    'version': '18.0.2.0.0',
     'category': 'Tools/Security',
-    'summary': 'Block dangerous file uploads with configurable extension/MIME blocklists, magic-bytes validation, and file size limits',
+    'summary': 'Block dangerous file uploads with configurable extension/MIME blocklists, magic-bytes validation, file size limits, and ClamAV antivirus scanning',
     'description': """
 File Upload Security
 ====================
@@ -15,6 +15,7 @@ create and write operations. Provides:
 * Magic-bytes content verification (detects disguised executables)
 * Double-extension attack prevention (e.g., report.pdf.exe)
 * Configurable maximum file size limit
+* **ClamAV antivirus scanning** (scans uploads for viruses/malware)
 * Audit logging of all blocked upload attempts
 * Settings UI under General Settings → File Security
 
@@ -24,6 +25,9 @@ Superusers bypass all restrictions.
     'author': 'Top-Tech',
     'website': '',
     'depends': ['base', 'base_setup','web'],
+    'external_dependencies': {
+        'python': ['pyclamd'],
+    },
     'data': [
         'data/ir_config_parameter_data.xml',
         'views/res_config_settings_views.xml',
